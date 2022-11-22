@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>subtraction addition multiplication division</title>
+
+    <!-- style link -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>Basic Mathematical Operations</h1>
+    <div class="container">
+        <div class="row1">
+            <div class="top">
+                <input type="number" id="NumberOne" min="0" placeholder="Enter number 1"/>
+            </div>
+            <div class="alt1" id="alt1">Enter a number to contiue</div>
+            <div class="bottom">
+                <input type="number" id="NumberTwo" min="0" placeholder="Enter number 2"/>
+            </div>
+            <div class="alt2" id="alt2">Enter a number to contiue</div>
+        </div>
+        <div class="result" id="result">Result will be displayed here</div>
+        <div class="row2">
+            <div class="btn-container"><button onclick="process('adding')">+</button></div>
+            <div class="btn-container"><button onclick="process('subtracting')">-</button></div>
+            <div class="btn-container"><button onclick="process('multiplying')">x</button></div>
+            <div class="btn-container"><button onclick="process('dividing')">/</button></div>
+        </div>
+    </div>
+    <ul>
+        <li>Give two inputs</li>
+        <li>click the button, based on which operation you want to do</li>
+    </ul>
+    <script>
+        let NumberOneEl = document.getElementById('NumberOne');
+        let NumberTwoEl = document.getElementById('NumberTwo');
+        let altOneEl = document.getElementById('alt1');
+        let altTwoEl = document.getElementById('alt2');
+        let resultEl = document.getElementById('result')
+        let result = 0;
+
+        function process(a){
+            if(NumberOneEl.value!==''&&NumberTwoEl.value!==''){
+                let NumberOneVl = Number(NumberOneEl.value);
+                let NumberTwoVl = Number(NumberTwoEl.value);
+                NumberOneEl.value = '';
+                NumberTwoEl.value = '';
+                altOneEl.style.visibility='hidden';
+                altTwoEl.style.visibility='hidden';
+
+                switch(a) {
+                case 'adding':
+                    result = NumberOneVl+NumberTwoVl;
+                    break;
+                case 'subtracting':
+                    result = NumberOneVl-NumberTwoVl;
+                    break;
+                case 'multiplying':
+                    result = NumberOneVl*NumberTwoVl;
+                    break;
+                default:
+                result = NumberOneVl/NumberTwoVl;
+                }
+
+                resultEl.innerText = `${result}`;
+            }else if(NumberOneEl.value===''&&NumberTwoEl.value===''){
+                altOneEl.style.visibility='visible';
+                altTwoEl.style.visibility='visible';
+            }else if (NumberOneEl.value!==''){
+                altTwoEl.style.visibility='visible';
+                altOneEl.style.visibility='hidden';
+            }else{
+                altOneEl.style.visibility='visible';
+                altTwoEl.style.visibility='hidden';
+            }
+        }
+    </script>
+</body>
+</html>
